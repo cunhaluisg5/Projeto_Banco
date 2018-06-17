@@ -6,8 +6,8 @@ public class ContaEspecial extends ContaBancaria{
     public ContaEspecial() {
     }
 
-    public ContaEspecial(float limiteCheque, int numero, int agencia, float saldo, String senha, Cliente cliente) {
-        super(numero, agencia, saldo, senha, cliente);
+    public ContaEspecial(float limiteCheque, int numero, String agencia, String senha, Cliente cliente) {
+        super(numero, agencia, senha, cliente);
         this.limiteCheque = limiteCheque;
     }
     

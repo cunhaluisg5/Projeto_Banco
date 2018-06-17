@@ -1,16 +1,19 @@
 package forms;
 
 import dao.ClientesDAO;
+import dao.ContasDAO;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.JOptionPane;
 
 public class FormPrincipal extends javax.swing.JFrame {
     public static ClientesDAO bdClientes = null;
+    public static ContasDAO bdContas = null;
     
     public FormPrincipal() {
         initComponents();
         bdClientes = new ClientesDAO();
+        bdContas = new ContasDAO();
     }
     
     @SuppressWarnings("unchecked")

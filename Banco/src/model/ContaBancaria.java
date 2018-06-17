@@ -2,7 +2,7 @@ package model;
 
 public class ContaBancaria {
     private int numero;
-    private int agencia;
+    private String agencia;
     private float saldo;
     private String senha;
     private Cliente cliente;
@@ -10,10 +10,9 @@ public class ContaBancaria {
     public ContaBancaria() {
     }
 
-    public ContaBancaria(int numero, int agencia, float saldo, String senha, Cliente cliente) {
+    public ContaBancaria(int numero, String agencia, String senha, Cliente cliente) {
         this.numero = numero;
         this.agencia = agencia;
-        this.saldo = saldo;
         this.senha = senha;
         this.cliente = cliente;
     }
@@ -47,11 +46,11 @@ public class ContaBancaria {
         this.numero = numero;
     }
 
-    public int getAgencia() {
+    public String getAgencia() {
         return agencia;
     }
 
-    public void setAgencia(int agencia) {
+    public void setAgencia(String agencia) {
         this.agencia = agencia;
     }
 
@@ -77,5 +76,11 @@ public class ContaBancaria {
 
     public void setCliente(Cliente cliente) {
         this.cliente = cliente;
+    }
+    
+    public boolean validaConta(){
+        return numero > 0 &&
+               !agencia.equals("    -  ") &&
+               !senha.equals("");
     }
 }
