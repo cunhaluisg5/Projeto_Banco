@@ -66,14 +66,29 @@ public class FormPrincipal extends javax.swing.JFrame {
 
         JMenuItemClientes.setText("Clientes");
         JMenuItemClientes.setName("JMenuItemClientes"); // NOI18N
+        JMenuItemClientes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JMenuItemClientesActionPerformed(evt);
+            }
+        });
         JMenuOperacoes.add(JMenuItemClientes);
 
         JMenuItemContas.setText("Contas");
         JMenuItemContas.setName("JMenuItemContas"); // NOI18N
+        JMenuItemContas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JMenuItemContasActionPerformed(evt);
+            }
+        });
         JMenuOperacoes.add(JMenuItemContas);
 
         JMenuItemListagem.setText("Listagem");
         JMenuItemListagem.setName("JMenuItemListagem"); // NOI18N
+        JMenuItemListagem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JMenuItemListagemActionPerformed(evt);
+            }
+        });
         JMenuOperacoes.add(JMenuItemListagem);
         JMenuOperacoes.add(jSeparator1);
 
@@ -118,6 +133,18 @@ public class FormPrincipal extends javax.swing.JFrame {
         String nome = "Luís Gustavo da Cunha Cipriani\n";
         JOptionPane.showMessageDialog(null, nome + fm.format(dataAtual), "Sobre", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_JMenuItemSobreActionPerformed
+
+    private void JMenuItemClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JMenuItemClientesActionPerformed
+        new FormClientes().setVisible(true);
+    }//GEN-LAST:event_JMenuItemClientesActionPerformed
+
+    private void JMenuItemContasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JMenuItemContasActionPerformed
+        new FormConta().setVisible(true);
+    }//GEN-LAST:event_JMenuItemContasActionPerformed
+
+    private void JMenuItemListagemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JMenuItemListagemActionPerformed
+        new FormListagem().setVisible(true);
+    }//GEN-LAST:event_JMenuItemListagemActionPerformed
 
     /**
      * @param args the command line arguments
