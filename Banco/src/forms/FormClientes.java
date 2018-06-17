@@ -27,6 +27,7 @@ public class FormClientes extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         taDados = new javax.swing.JTextArea();
         btSair = new javax.swing.JButton();
+        btLimpar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Clientes");
@@ -55,6 +56,11 @@ public class FormClientes extends javax.swing.JFrame {
         lbNome.setName("lbNome"); // NOI18N
 
         tfNome.setName("tfNome"); // NOI18N
+        tfNome.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                tfNomeKeyTyped(evt);
+            }
+        });
 
         lbEndereco.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         lbEndereco.setText("Endereço:");
@@ -78,6 +84,8 @@ public class FormClientes extends javax.swing.JFrame {
             }
         });
 
+        jScrollPane1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Clientes Cadastrados:", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11))); // NOI18N
+
         taDados.setEditable(false);
         taDados.setColumns(20);
         taDados.setRows(5);
@@ -94,6 +102,15 @@ public class FormClientes extends javax.swing.JFrame {
             }
         });
 
+        btLimpar.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btLimpar.setText("Limpar");
+        btLimpar.setName("btLimpar"); // NOI18N
+        btLimpar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btLimparActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -103,6 +120,8 @@ public class FormClientes extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(btCadastrar)
+                        .addGap(139, 139, 139)
+                        .addComponent(btLimpar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btSair))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
@@ -154,7 +173,8 @@ public class FormClientes extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btCadastrar)
-                    .addComponent(btSair))
+                    .addComponent(btSair)
+                    .addComponent(btLimpar))
                 .addGap(22, 22, 22))
         );
 
@@ -170,18 +190,27 @@ public class FormClientes extends javax.swing.JFrame {
 
     private void btCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCadastrarActionPerformed
         String CPF = tfCPF.getText();
-        String nome = tfNome.getText();
-        String endereco = tfEndereco.getText();
-        float renda = Float.parseFloat(tfRenda.getText());
-        Cliente cliente = new Cliente(CPF, nome, endereco, renda);
-        if(cliente.validarCliente()){
-            FormPrincipal.bdClientes.insereCliente(cliente);
-            JOptionPane.showMessageDialog(null, "Cliente cadastrado com sucesso!", "Cadastro", JOptionPane.INFORMATION_MESSAGE);
-            taDados.append(cliente.toString() + "\n");
-            btCadastrar.setEnabled(false);
+        Cliente cli = FormPrincipal.bdClientes.buscaCliente(CPF);
+        if(cli == null){
+            String nome = tfNome.getText();
+            String endereco = tfEndereco.getText();
+            float renda = Float.parseFloat(tfRenda.getText());
+            Cliente cliente = new Cliente(CPF, nome, endereco, renda);
+            if(cliente.validarCliente()){
+                int opcao = JOptionPane.showConfirmDialog(null, "Deseja adicionar o cliente?", "Atenção", JOptionPane.YES_NO_OPTION);
+                if(opcao == 0){
+                    FormPrincipal.bdClientes.insereCliente(cliente);
+                    JOptionPane.showMessageDialog(null, "Cliente cadastrado com sucesso!", "Cadastro", JOptionPane.INFORMATION_MESSAGE);
+                    taDados.append(cliente.toString() + "\n");
+                    btCadastrar.setEnabled(false);
+                }
+            }else{
+                JOptionPane.showMessageDialog(null, "Preencha os dados primeiro!", "Cadastro", JOptionPane.ERROR_MESSAGE);
+            }      
         }else{
-            JOptionPane.showMessageDialog(null, "Preencha os dados primeiro!", "Cadastro", JOptionPane.ERROR_MESSAGE);
-        }        
+            JOptionPane.showMessageDialog(null, "O cliente já existe !", "Cadastro", JOptionPane.ERROR_MESSAGE);
+            tfCPF.setValue("");
+        }          
     }//GEN-LAST:event_btCadastrarActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
@@ -192,6 +221,23 @@ public class FormClientes extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_formWindowOpened
+
+    private void btLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLimparActionPerformed
+        tfCPF.setValue("");
+        tfNome.setText("");
+        tfEndereco.setText("");
+        tfRenda.setText("0");
+        tfCPF.requestFocus();
+        btCadastrar.setEnabled(true);
+    }//GEN-LAST:event_btLimparActionPerformed
+
+    private void tfNomeKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfNomeKeyTyped
+        String caracteres = "0987654321";
+        if(caracteres.contains(evt.getKeyChar() + ""))
+        {
+            evt.consume();
+        }
+    }//GEN-LAST:event_tfNomeKeyTyped
 
     /**
      * @param args the command line arguments
@@ -230,6 +276,7 @@ public class FormClientes extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btCadastrar;
+    private javax.swing.JButton btLimpar;
     private javax.swing.JButton btSair;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
