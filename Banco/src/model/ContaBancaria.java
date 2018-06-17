@@ -29,7 +29,7 @@ public class ContaBancaria {
         return str;
     }
     
-    private void setSaldo(){
+    public void setSaldo(){
         if(cliente.getRenda() <= 800){
             saldo = (25 / 100) * cliente.getRenda();
         }else if((cliente.getRenda() > 800) && (cliente.getRenda() <= 1700)){
@@ -62,7 +62,7 @@ public class ContaBancaria {
     public void setSaldo(float saldo) {
         this.saldo = saldo;
     }
-
+    
     public String getSenha() {
         return senha;
     }
