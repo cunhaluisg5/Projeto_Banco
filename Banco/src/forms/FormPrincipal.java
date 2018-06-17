@@ -5,6 +5,10 @@
  */
 package forms;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Luis
@@ -89,6 +93,11 @@ public class FormPrincipal extends javax.swing.JFrame {
 
         JMenuItemSobre.setText("Sobre");
         JMenuItemSobre.setName("JMenuItemSobre"); // NOI18N
+        JMenuItemSobre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JMenuItemSobreActionPerformed(evt);
+            }
+        });
         JMenuAjuda.add(JMenuItemSobre);
 
         jMenuBar1.add(JMenuAjuda);
@@ -102,6 +111,13 @@ public class FormPrincipal extends javax.swing.JFrame {
     private void JMenuItemSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JMenuItemSairActionPerformed
         this.dispose();
     }//GEN-LAST:event_JMenuItemSairActionPerformed
+
+    private void JMenuItemSobreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JMenuItemSobreActionPerformed
+        Date dataAtual = new Date();
+        SimpleDateFormat fm = new SimpleDateFormat("dd/MM/yyyy");
+        String nome = "Luís Gustavo da Cunha Cipriani\n";
+        JOptionPane.showMessageDialog(null, nome + fm.format(dataAtual), "Sobre", JOptionPane.INFORMATION_MESSAGE);
+    }//GEN-LAST:event_JMenuItemSobreActionPerformed
 
     /**
      * @param args the command line arguments
