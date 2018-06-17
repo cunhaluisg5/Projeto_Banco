@@ -75,6 +75,11 @@ public class FormPrincipal extends javax.swing.JFrame {
 
         JMenuItemSair.setText("Sair");
         JMenuItemSair.setName("JMenuItemSair"); // NOI18N
+        JMenuItemSair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JMenuItemSairActionPerformed(evt);
+            }
+        });
         JMenuOperacoes.add(JMenuItemSair);
 
         jMenuBar1.add(JMenuOperacoes);
@@ -93,6 +98,10 @@ public class FormPrincipal extends javax.swing.JFrame {
         setSize(new java.awt.Dimension(621, 383));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void JMenuItemSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JMenuItemSairActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_JMenuItemSairActionPerformed
 
     /**
      * @param args the command line arguments
