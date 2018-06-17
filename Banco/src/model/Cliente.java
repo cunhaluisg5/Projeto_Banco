@@ -47,4 +47,21 @@ public class Cliente {
     public void setRenda(float renda) {
         this.renda = renda;
     }
+    
+    public boolean validarCliente(){
+        return !CPF.equals("") &&
+               !nome.equals("") &&
+               !endereco.equals("") &&
+               renda > 0;
+    }
+    
+    @Override
+    public String toString(){
+        String str = "";
+        str += "\nCPF: " + CPF;
+        str += "\nNome: " + nome;
+        str += "\nEndereço: " + endereco;
+        str += "\nRenda: " + renda;
+        return str;
+    }
 }
