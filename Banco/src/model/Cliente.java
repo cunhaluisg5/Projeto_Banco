@@ -4,12 +4,12 @@ public class Cliente {
     private String CPF;
     private String nome;
     private String endereco;
-    private float renda;
+    private double renda;
 
     public Cliente() {
     }
 
-    public Cliente(String CPF, String nome, String endereco, float renda) {
+    public Cliente(String CPF, String nome, String endereco, double renda) {
         this.CPF = CPF;
         this.nome = nome;
         this.endereco = endereco;
@@ -40,7 +40,7 @@ public class Cliente {
         this.endereco = endereco;
     }
 
-    public float getRenda() {
+    public double getRenda() {
         return renda;
     }
 

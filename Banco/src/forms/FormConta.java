@@ -273,29 +273,19 @@ public class FormConta extends javax.swing.JFrame {
     private void btAbrirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAbrirActionPerformed
         int numero = Integer.parseInt(tfNumero.getText());
         String agencia = tfAgencia.getText();
-        String senha = pfSenha.getText();
-        ContaBancaria conta = new ContaBancaria(numero, agencia, senha, cliente);
-        if(conta.validaConta()){
-            if(capturaRadio().equals("Conta Especial")){
-                try{
-                    float valor = Float.parseFloat(JOptionPane.showInputDialog(null, "Informe o limite!", "Atenção", JOptionPane.DEFAULT_OPTION));
-                    ContaEspecial c = new ContaEspecial(valor, numero, agencia, senha, cliente);
-                    c.setSaldo();
-                    FormPrincipal.bdContas.inserirConta(c);
-                    JOptionPane.showMessageDialog(null, "Conta criada com sucesso!", "Cadastro", JOptionPane.INFORMATION_MESSAGE);
-                    btLimparActionPerformed(evt);
-                }catch(NumberFormatException e){
-                    JOptionPane.showMessageDialog(null, "Informe um valor!", "Atenção", JOptionPane.ERROR_MESSAGE);
-                }
-            }else{
-                conta.setSaldo();
-                FormPrincipal.bdContas.inserirConta(conta);
+        String senha = new String (pfSenha.getPassword());
+            if(rbContaBancaria.isSelected()){
+                ContaBancaria bancaria = new ContaBancaria(numero, agencia, senha, cliente);
+                bancaria.setSaldo();
+                FormPrincipal.bdContas.inserirConta(bancaria);
+                JOptionPane.showMessageDialog(null, "Conta criada com sucesso!", "Cadastro", JOptionPane.INFORMATION_MESSAGE);
+            }else if(rbContaEspecial.isSelected()){
+                ContaEspecial especial = new ContaEspecial(numero, agencia, senha, cliente);
+                especial.setSaldo();
+                FormPrincipal.bdContas.inserirConta((ContaBancaria) especial);
                 JOptionPane.showMessageDialog(null, "Conta criada com sucesso!", "Cadastro", JOptionPane.INFORMATION_MESSAGE);
                 btLimparActionPerformed(evt);
             }
-        }else{
-            JOptionPane.showMessageDialog(null, "Preencha todos os campos!", "Atenção", JOptionPane.ERROR_MESSAGE);
-        }
     }//GEN-LAST:event_btAbrirActionPerformed
 
     private void btLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLimparActionPerformed

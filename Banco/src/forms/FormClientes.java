@@ -194,7 +194,7 @@ public class FormClientes extends javax.swing.JFrame {
         if(cli == null){
             String nome = tfNome.getText();
             String endereco = tfEndereco.getText();
-            float renda = Float.parseFloat(tfRenda.getText());
+            double renda = Float.parseFloat(tfRenda.getText());
             Cliente cliente = new Cliente(CPF, nome, endereco, renda);
             if(cliente.validarCliente()){
                 int opcao = JOptionPane.showConfirmDialog(null, "Deseja adicionar o cliente?", "Atenção", JOptionPane.YES_NO_OPTION);

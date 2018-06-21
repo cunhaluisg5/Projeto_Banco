@@ -3,7 +3,7 @@ package model;
 public class ContaBancaria {
     private int numero;
     private String agencia;
-    protected float saldo;
+    protected double saldo;
     private String senha;
     private Cliente cliente;
 
@@ -25,13 +25,15 @@ public class ContaBancaria {
     }
     
     public void setSaldo(){
-        if(cliente.getRenda() <= 800){
-            saldo = (25 / 100) * cliente.getRenda();
-        }else if((cliente.getRenda() > 800) && (cliente.getRenda() <= 1700)){
-            saldo = (53 / 100) * cliente.getRenda();
-        }else if(cliente.getRenda() > 1700){
-            saldo = 1000;
+        double valor = cliente.getRenda();
+        if(valor <= 800){
+            valor = valor * 0.25;
+        }else if(valor > 800 && valor <= 1700){
+            valor = valor * 0.53;
+        }else{
+            valor = 1000;
         }
+        this.saldo = valor;
     }
 
     public int getNumero() {
@@ -50,7 +52,7 @@ public class ContaBancaria {
         this.agencia = agencia;
     }
 
-    public float getSaldo() {
+    public double getSaldo() {
         return saldo;
     }
     
