@@ -19,12 +19,8 @@ public class ContaBancaria {
     
     @Override
     public String toString(){
-        String str = "";
-        str += "Número: " + numero;
-        str += "Agência: " + agencia;
-        str += "Saldo: " + saldo;
-        str += "CPF: " + cliente.getCPF();
-        str += "Nome: " + cliente.getNome();
+        String str = "\n" + numero + "\n" + agencia + "\n" + saldo + "\n" + cliente.getCPF() + 
+                     "\n" + cliente.getNome() + "\n";
         return str;
     }
     

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package forms;
 
 import java.util.List;
@@ -11,10 +6,6 @@ import javax.swing.table.DefaultTableModel;
 import model.Cliente;
 import model.ContaBancaria;
 
-/**
- *
- * @author Luis
- */
 public class FormListagem extends javax.swing.JFrame {
 
     DefaultTableModel modelo  = null;
@@ -61,11 +52,11 @@ public class FormListagem extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Número", "Agência", "Saldo", "Cliente", "Endereço"
+                "Número", "Agência", "Saldo", "CPF", "Nome"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.Float.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
                 false, false, false, false, false
@@ -200,8 +191,9 @@ public class FormListagem extends javax.swing.JFrame {
     }
     
     private void inserirTabela(List<ContaBancaria> conta, int i, Cliente cliente){
-        modelo.addRow(new Object[]{conta.get(i).getNumero(), conta.get(i).getAgencia(), 
-        conta.get(i).getSaldo(), cliente.getNome(), cliente.getEndereco()});
+        String array[] = new String[5];
+        array = conta.toString().split("\n");
+        modelo.addRow(new Object[]{array[1], array[2], array[3],array[4], array[5]});
     }
     
     public static void main(String args[]) {

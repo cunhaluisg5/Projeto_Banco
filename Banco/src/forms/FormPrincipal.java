@@ -34,6 +34,11 @@ public class FormPrincipal extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Banco");
         setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         jPanel1.setBackground(new java.awt.Color(204, 204, 255));
 
@@ -134,6 +139,10 @@ public class FormPrincipal extends javax.swing.JFrame {
     private void JMenuItemListagemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JMenuItemListagemActionPerformed
         new FormListagem().setVisible(true);
     }//GEN-LAST:event_JMenuItemListagemActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        this.setExtendedState(this.MAXIMIZED_BOTH);
+    }//GEN-LAST:event_formWindowOpened
 
     /**
      * @param args the command line arguments
