@@ -275,7 +275,6 @@ public class FormConta extends javax.swing.JFrame {
         String agencia = tfAgencia.getText();
         String senha = pfSenha.getText();
         ContaBancaria conta = new ContaBancaria(numero, agencia, senha, cliente);
-        conta.setSaldo();
         if(conta.validaConta()){
             if(capturaRadio().equals("Conta Especial")){
                 try{
@@ -289,6 +288,7 @@ public class FormConta extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(null, "Informe um valor!", "Atenção", JOptionPane.ERROR_MESSAGE);
                 }
             }else{
+                conta.setSaldo();
                 FormPrincipal.bdContas.inserirConta(conta);
                 JOptionPane.showMessageDialog(null, "Conta criada com sucesso!", "Cadastro", JOptionPane.INFORMATION_MESSAGE);
                 btLimparActionPerformed(evt);

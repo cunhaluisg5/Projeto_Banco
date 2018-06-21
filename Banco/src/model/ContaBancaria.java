@@ -3,7 +3,7 @@ package model;
 public class ContaBancaria {
     private int numero;
     private String agencia;
-    private float saldo;
+    protected float saldo;
     private String senha;
     private Cliente cliente;
 
@@ -52,10 +52,6 @@ public class ContaBancaria {
 
     public float getSaldo() {
         return saldo;
-    }
-
-    public void setSaldo(float saldo) {
-        this.saldo = saldo;
     }
     
     public String getSenha() {

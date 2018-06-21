@@ -13,13 +13,9 @@ public class ContaEspecial extends ContaBancaria{
     
     @Override
     public void setSaldo(){
-        if(getCliente().getRenda() <= 800){
-            setSaldo(((25 / 100) * getCliente().getRenda()) + limiteCheque);
-        }else if((getCliente().getRenda() > 800) && (getCliente().getRenda() <= 1700)){
-            setSaldo(((53 / 100) * getCliente().getRenda()) + limiteCheque);
-        }else if(getCliente().getRenda() > 1700){
-            setSaldo(1000 + limiteCheque);
-        }
+        super.setSaldo();
+        float valor = super.saldo;
+        this.saldo = valor + limiteCheque;
     }
 
     public float getLimiteCheque() {
